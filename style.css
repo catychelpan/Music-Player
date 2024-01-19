@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;1,400&family=Rowdies:wght@700&display=swap');
+
+html {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: #232C33;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Rowdies, sans-serif;
+    font-size: 12px;
+  }
+
+  .player-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 450px;
+    width: 350px;
+    background-color: #FDFFFC;
+    border-radius: 20px;
+    box-shadow: 4px 4px 30px 5px #0893a551;
+  }
+
+
+  
+h2 {
+    font-size: 28px;
+    text-align: center;
+    margin: -15px;
+  }
+  
+  h3 {
+    font-size: 15px;
+    text-align: center;
+    font-family: Roboto, sans-serif;
+    font-weight: bold;
+    font-style: italic;
+    margin: 18px 0 0 0;
+  }
+
+
+  .img-container {
+    width: 230px;
+    height: 240px;
+    position: relative;
+    top: -60px;
+    transition: transform 950ms ease;
+    animation: rotateDisc 12s linear infinite;
+  }
+
+  @keyframes rotateDisc {
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(3600deg);}
+  }
+
+  .img-container img {
+    height: 100%;
+    width: 100%;
+  }
+
+  .progress-container {
+    
+    background: #303030;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 40px 20px 30px 20px;
+    height: 6px;
+    width: 80%;
+    
+  }
+  
+  .progress {
+    background: #0893a5;
+    border-radius: 5px;
+    height: 100%;
+    width: 66%;
+    transition: width 0.1s linear;
+  }
+  
+  .duration-wrapper {
+    position: relative;
+    top: -25px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .player-controls {
+    direction: flex;
+    justify-content: space-around;
+
+    
+    
+    
+  }
+  
+  .fas {
+    font-size: 30px;
+    color: rgb(40, 40, 40);
+    cursor: pointer;
+    user-select: none;
+    transition: 300ms ease;
+  }
+
+  .fas:is(:hover) {
+    color: #0893a5;
+  }
+
+  .main-btn {
+    font-size: 40px;
+    margin-inline: 10px;
+    color: #0893a5;
+    cursor: pointer;
+    
+  }
+
+  .main-btn:is(:hover) {
+    color: rgb(40, 40, 40);
+    transition: 300ms ease;
+  }
+  
+
+
+
+
+  /* Media Query: iPhone (Vertical) */
+@media screen and (max-width: 360px) {
+    .player-container {
+      width: 90vw;
+    }
+}
+
+
+
