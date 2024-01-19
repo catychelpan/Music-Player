@@ -50,12 +50,25 @@ h2 {
     position: relative;
     top: -60px;
     transition: transform 950ms ease;
-    animation: rotateDisc 12s linear infinite;
+    
+  }
+
+  .img-rotate {
+    animation: rotateDisc 3s linear infinite;
+  }
+
+  .img-rotate-back {
+    animation: rotateDiscBack 0.7s linear;
+  }
+
+  @keyframes rotateDiscBack {
+    0% {transform: rotate(180deg);}
+    100% {transform: rotate(0deg);}
   }
 
   @keyframes rotateDisc {
     0% {transform: rotate(0deg);}
-    100% {transform: rotate(3600deg);}
+    100% {transform: rotate(360deg);}
   }
 
   .img-container img {
