@@ -53,6 +53,11 @@ h2 {
     
   }
 
+  .img-container img {
+    width: 100%;
+    height: auto;
+  }
+
   .img-rotate {
     animation: rotateDisc 3s linear infinite;
   }
