@@ -2,6 +2,10 @@ const image = document.querySelector("img");
 const title = document.getElementById("title");
 const artist = document.getElementById("artist");
 
+const timeLabel = document.getElementById("current-time");
+const progressBar = document.querySelector(".progress");
+const progressContainer = document.getElementById("progress-container");
+
 const music = document.querySelector("audio");
 const prevBtn = document.getElementById("prev");
 const playBtn = document.getElementById("play");
@@ -13,6 +17,11 @@ let isPlaying = false;
 
 //Song id to switch between songs
 let songId = 0;
+
+let startTime = 0;
+let elapsedTime = 0;
+let timerId = null;
+
 
 
 
@@ -151,11 +160,22 @@ function loadSong(song) {
     image.setAttribute("src", `img/${song.imgAndSongName}.png`);
     music.setAttribute("src", `music/${song.imgAndSongName}.mp3`);
 
-    //check if switch was while playing time or stop time
+    playSong();
+
+
+}
+
+
+function updateProgressBar(e) {
     if (isPlaying) {
-        music.play();
-    }else {
-        music.pause();
+
+        const {duration,currentTime} = e.srcElement;
+        const progressPercent = (currentTime / duration) * 100;
+        
+        progressBar.style.width = `${progressPercent}%`
+         
     }
 
 }
+
+music.addEventListener("timeupdate", updateProgressBar);
