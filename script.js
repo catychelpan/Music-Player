@@ -1,3 +1,8 @@
+const volumeBar = document.getElementById("duration-container");
+const volumeBarProgress = document.getElementById("volume-progress");
+const volumeIconContainer = document.getElementById("volume-img-container");
+const volumeIcon = document.getElementById("volume-icon");
+
 const image = document.querySelector("img");
 const title = document.getElementById("title");
 const artist = document.getElementById("artist");
@@ -19,11 +24,9 @@ let isPlaying = false;
 //Song id to switch between songs
 let songId = 0;
 
-let startTime = 0;
-let elapsedTime = 0;
-let timerId = null;
-
-
+//volume functionality variables
+let currVolume = null;
+let isSoundOn = true;
 
 
 //Music collection
@@ -91,7 +94,7 @@ playBtn.addEventListener("click", () => (isPlaying ? pauseSong() : playSong()));
 
 
 
-
+//Switching between songs 
 function switchNextSong() {
 
     let song = null;
@@ -167,6 +170,8 @@ function loadSong(song) {
 }
 
 
+
+//Update Progress and time labels
 function updateProgressBar(e) {
     if (isPlaying) {
 
@@ -202,3 +207,79 @@ function updateProgressBar(e) {
 }
 
 music.addEventListener("timeupdate", updateProgressBar);
+
+
+
+function setProgressBar(e) {
+
+    console.log(e);
+    console.log(this);
+    const progressInitWidth = this.clientWidth;
+    const clickedArea = e.offsetX;
+
+    const {duration} = music;
+
+    music.currentTime = (clickedArea / progressInitWidth) * duration;
+    playSong();
+
+    
+
+}
+
+progressContainer.addEventListener("click", setProgressBar);
+
+
+
+function finishSong() {
+    setTimeout(switchNextSong,1000);
+}
+
+music.addEventListener("ended", finishSong);
+
+
+
+
+
+//Changing the volume of the music
+function changeVolume(e) {
+
+
+    const volumeInitWidth = this.clientWidth;
+    const clickedArea = e.offsetX;
+
+    const volumePercent = (clickedArea / volumeInitWidth);
+    currVolume = volumePercent;
+
+    volumeBarProgress.style.width = `${volumePercent * 100}%`;
+    music.volume = volumePercent;
+
+}
+
+volumeBar.addEventListener("click", changeVolume);
+
+
+
+//Turn music on and off
+function turnMusicOn() {
+
+    isSoundOn = true;
+    volumeIcon.classList.replace("fa-volume-off", "fa-volume-high")
+    music.volume = currVolume;
+    volumeBarProgress.style.width = `${currVolume * 100}%` ;
+
+}
+
+
+function turnMusicOff() {
+
+    isSoundOn = false;
+    volumeIcon.classList.replace("fa-volume-high", "fa-volume-off")
+    music.volume = 0.0;
+    volumeBarProgress.style.width = "0%";
+
+    
+
+}
+
+volumeIconContainer.addEventListener("click", () => {isSoundOn ? turnMusicOff() : turnMusicOn() });
+

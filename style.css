@@ -50,12 +50,15 @@ h2 {
     position: relative;
     top: -60px;
     transition: transform 950ms ease;
+    margin-bottom: -30px;
+    
     
   }
 
   .img-container img {
     width: 100%;
     height: auto;
+    
   }
 
   .img-rotate {
@@ -80,6 +83,57 @@ h2 {
     height: 100%;
     width: 100%;
   }
+
+.volume-img-container {
+  background-color: #0893a5;
+  font-size: 0.9rem;
+  color: white;
+  padding: 10px 10px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.duration-container {
+  width: 90px;
+  height: 5px;
+  background-color: #232C33;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+}
+
+.volume-progress {
+
+  background: #0893a5;
+  border-radius: 5px;
+  height: 100%;
+  width: 80%;
+  
+
+}
+
+
+
+.volume-container {
+  position: relative;
+  top: -5%;
+  margin-bottom: 15px;
+  background-color: #0893a55e;
+  height: 35px;
+  border-radius: 18px;
+  width: 150px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+}
+
+
 
   .progress-container {
     
