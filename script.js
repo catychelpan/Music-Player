@@ -2,7 +2,8 @@ const image = document.querySelector("img");
 const title = document.getElementById("title");
 const artist = document.getElementById("artist");
 
-const timeLabel = document.getElementById("current-time");
+const currentTimeLabel = document.getElementById("current-time");
+const durationLabel = document.getElementById("duration");
 const progressBar = document.querySelector(".progress");
 const progressContainer = document.getElementById("progress-container");
 
@@ -172,7 +173,29 @@ function updateProgressBar(e) {
         const {duration,currentTime} = e.srcElement;
         const progressPercent = (currentTime / duration) * 100;
         
-        progressBar.style.width = `${progressPercent}%`
+        progressBar.style.width = `${progressPercent}%`;
+
+        //Calculate duration display
+
+        const durationMin = Math.floor(duration / 60);
+        let durationSec =  Math.floor(duration % 60).toString().padStart(2,'0');
+
+        //Delay switching the duration label to avoid NaN
+
+        if (durationSec != "NaN") {
+            durationLabel.textContent = `${durationMin}:${durationSec}`;
+        }
+
+        //Calculate current time display
+
+        const curMin = Math.floor(currentTime / 60);
+        let curSec =  Math.floor(currentTime % 60).toString().padStart(2,'0');
+
+        if (curSec != "NaN") {
+            currentTimeLabel.textContent = `${curMin}:${curSec}`;
+        }
+
+
          
     }
 
